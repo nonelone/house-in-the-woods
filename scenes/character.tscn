@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://bnwgpi0vasadf"]
+
+[ext_resource type="Texture2D" uid="uid://cerpq3qb8xdyj" path="res://assets/entities/bible.png" id="1_ftyck"]
+[ext_resource type="Script" path="res://scenes/character.gd" id="1_n3o7h"]
+[ext_resource type="PackedScene" uid="uid://v8unxy2cp7rw" path="res://scenes/ui.tscn" id="3_lnlxl"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6t6pq"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"death_1",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"death_2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ftyck")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"movement",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xqibv"]
+radius = 92.9139
+
+[node name="Character" type="CharacterBody2D"]
+script = ExtResource("1_n3o7h")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_6t6pq")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_xqibv")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Ui" parent="." instance=ExtResource("3_lnlxl")]
+position = Vector2(-960, -540)

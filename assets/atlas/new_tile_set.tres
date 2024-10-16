@@ -1,0 +1,18 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://cq808h6iaibgs"]
+
+[ext_resource type="Texture2D" uid="uid://cerpq3qb8xdyj" path="res://assets/entities/bible.png" id="1_1n42q"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8p4ny"]
+texture = ExtResource("1_1n42q")
+texture_region_size = Vector2i(160, 160)
+0:0/0 = 0
+
+[resource]
+tile_size = Vector2i(160, 160)
+terrain_set_0/mode = 2
+terrain_set_0/terrain_0/name = "Terrain 0"
+terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+terrain_set_0/terrain_1/name = "Terrain 1"
+terrain_set_0/terrain_1/color = Color(0.5, 0.4375, 0.25, 1)
+navigation_layer_0/layers = 1
+sources/0 = SubResource("TileSetAtlasSource_8p4ny")
