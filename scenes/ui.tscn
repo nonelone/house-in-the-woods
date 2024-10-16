@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://v8unxy2cp7rw"]
+
+[ext_resource type="Script" path="res://scenes/ui.gd" id="1_d04sx"]
+[ext_resource type="Texture2D" uid="uid://cerpq3qb8xdyj" path="res://assets/entities/bible.png" id="2_uxqsv"]
+[ext_resource type="Texture2D" uid="uid://bxgeem6n8k66n" path="res://assets/entities/open-bible.png" id="3_bqqyc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x2nfh"]
+size = Vector2(121, 142)
+
+[node name="Ui" type="Node2D"]
+script = ExtResource("1_d04sx")
+
+[node name="Bible" type="Area2D" parent="."]
+position = Vector2(1848, 80)
+metadata/_edit_group_ = true
+
+[node name="BibleShape" type="CollisionShape2D" parent="Bible"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_x2nfh")
+
+[node name="BibleSprite" type="Sprite2D" parent="Bible"]
+texture_filter = 1
+texture = ExtResource("2_uxqsv")
+
+[node name="OpenBible" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(960, 540)
+scale = Vector2(5, 5)
+texture = ExtResource("3_bqqyc")
+
+[node name="Menu" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(960, 540)
+rotation = 3.14159
+scale = Vector2(5, 5)
+texture = ExtResource("3_bqqyc")
+
+[connection signal="input_event" from="Bible" to="." method="_on_bible_input_event"]
