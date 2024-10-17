@@ -1,3 +1,61 @@
-[gd_scene format=3 uid="uid://c65l026xbugam"]
+[gd_scene load_steps=5 format=3 uid="uid://c65l026xbugam"]
+
+[ext_resource type="Texture2D" uid="uid://qf2s8xcfv0a3" path="res://assets/entities/menu-tile.png" id="1_nfkc1"]
+[ext_resource type="Script" path="res://scenes/main_menu.gd" id="1_u48ak"]
+[ext_resource type="Texture2D" uid="uid://bx021tib1ypm4" path="res://assets/tres/menu_patch_rect.tres" id="3_v3j2f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nj1kf"]
+size = Vector2(641, 320)
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_u48ak")
+
+[node name="PlayButton" type="Area2D" parent="."]
+position = Vector2(960, 360)
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayButton"]
+texture = ExtResource("1_nfkc1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayButton"]
+position = Vector2(-1.5, 0)
+shape = SubResource("RectangleShape2D_nj1kf")
+
+[node name="CreditsButton" type="Area2D" parent="."]
+position = Vector2(960, 560)
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="CreditsButton"]
+texture = ExtResource("1_nfkc1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CreditsButton"]
+position = Vector2(-1.5, 0)
+shape = SubResource("RectangleShape2D_nj1kf")
+
+[node name="SettingsButton" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SettingsButton"]
+shape = SubResource("RectangleShape2D_nj1kf")
+
+[node name="Sprite2D" type="Sprite2D" parent="SettingsButton"]
+
+[node name="Credits" type="Node2D" parent="."]
+visible = false
+position = Vector2(960, 540)
+
+[node name="CreditsPatch" type="NinePatchRect" parent="Credits"]
+texture_filter = 1
+offset_left = -480.0
+offset_top = -405.0
+offset_right = 480.0
+offset_bottom = 405.0
+mouse_filter = 0
+texture = ExtResource("3_v3j2f")
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+
+[connection signal="input_event" from="PlayButton" to="." method="_on_play_button_input_event"]
+[connection signal="input_event" from="CreditsButton" to="." method="_on_credits_button_input_event"]

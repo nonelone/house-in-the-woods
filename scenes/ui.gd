@@ -1,5 +1,9 @@
 extends Node2D
 
+@export var haunt = 0
+@export var omen = "none"
+@export var sanity = 100
+
 @onready var opened_bible = get_node("OpenBible")
 @onready var menu = get_node("Menu")
 
