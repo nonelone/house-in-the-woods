@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://v8unxy2cp7rw"]
+[gd_scene load_steps=6 format=3 uid="uid://v8unxy2cp7rw"]
 
 [ext_resource type="Script" path="res://scenes/ui.gd" id="1_d04sx"]
 [ext_resource type="Texture2D" uid="uid://cerpq3qb8xdyj" path="res://assets/entities/bible.png" id="2_uxqsv"]
 [ext_resource type="Texture2D" uid="uid://bxgeem6n8k66n" path="res://assets/entities/open-bible.png" id="3_bqqyc"]
+[ext_resource type="Texture2D" uid="uid://bx021tib1ypm4" path="res://assets/tres/menu_patch_rect.tres" id="4_8uuja"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x2nfh"]
 size = Vector2(121, 142)
@@ -29,11 +30,22 @@ position = Vector2(960, 540)
 scale = Vector2(5, 5)
 texture = ExtResource("3_bqqyc")
 
-[node name="Menu" type="Sprite2D" parent="."]
+[node name="Menu" type="Node2D" parent="."]
 visible = false
-position = Vector2(960, 540)
-rotation = 3.14159
-scale = Vector2(5, 5)
-texture = ExtResource("3_bqqyc")
+
+[node name="ColorRect" type="ColorRect" parent="Menu"]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 0.392157)
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Menu"]
+offset_right = 384.0
+offset_bottom = 1080.0
+mouse_filter = 0
+texture = ExtResource("4_8uuja")
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
 
 [connection signal="input_event" from="Bible" to="." method="_on_bible_input_event"]
