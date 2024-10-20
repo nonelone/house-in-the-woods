@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://dyqg1k0jn7ixh"]
+
+[ext_resource type="Script" path="res://scenes/ui/popup.gd" id="1_cd0xa"]
+[ext_resource type="SpriteFrames" uid="uid://856h21lflhm4" path="res://assets/atlas/inventory.tres" id="1_iwshk"]
+
+[node name="Popup" type="Node2D"]
+script = ExtResource("1_cd0xa")
+
+[node name="Note" type="AnimatedSprite2D" parent="."]
+visible = false
+z_index = 2
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("1_iwshk")
+frame = 4
+
+[node name="Label" type="Label" parent="Note"]
+offset_left = -57.0
+offset_top = -104.0
+offset_right = 56.0
+offset_bottom = 24.0
+theme_override_colors/font_color = Color(0.776745, 0.356619, 0.356619, 1)
+theme_override_font_sizes/font_size = 16
+text = "
+Dear Wren,
+
+You will find all answers in the Book
+
+Find the key and all will become clear"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2

@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://ddqflsqbxitq5"]
+
+[ext_resource type="Texture2D" uid="uid://dbg4stqs6ejnw" path="res://assets/entities/shitbox.png" id="1_43b46"]
+[ext_resource type="Material" uid="uid://c63j4vj58rwkx" path="res://scenes/items/outline.material" id="1_oboan"]
+[ext_resource type="Script" path="res://scenes/items/car.gd" id="2_g1q42"]
+[ext_resource type="Texture2D" uid="uid://caoor745sppkw" path="res://assets/entities/light.png" id="4_lo680"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ds1p"]
+size = Vector2(241, 112)
+
+[node name="Car" type="Sprite2D"]
+texture_filter = 1
+material = ExtResource("1_oboan")
+texture = ExtResource("1_43b46")
+script = ExtResource("2_g1q42")
+
+[node name="CarBody" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CarBody"]
+position = Vector2(-0.5, 8)
+shape = SubResource("RectangleShape2D_5ds1p")
+
+[node name="Flashlight" type="PointLight2D" parent="."]
+position = Vector2(-90, 13)
+rotation = -1.5708
+color = Color(1, 1, 1, 0.498039)
+energy = 2.29
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 1)
+texture = ExtResource("4_lo680")
+offset = Vector2(0, -250)
+metadata/_edit_group_ = true

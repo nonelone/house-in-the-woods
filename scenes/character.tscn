@@ -1,12 +1,30 @@
-[gd_scene load_steps=8 format=3 uid="uid://bnwgpi0vasadf"]
+[gd_scene load_steps=15 format=3 uid="uid://bnwgpi0vasadf"]
 
-[ext_resource type="Texture2D" uid="uid://cerpq3qb8xdyj" path="res://assets/entities/bible.png" id="1_ftyck"]
 [ext_resource type="Script" path="res://scenes/character.gd" id="1_n3o7h"]
 [ext_resource type="Texture2D" uid="uid://caoor745sppkw" path="res://assets/entities/light.png" id="2_0qg0l"]
-[ext_resource type="PackedScene" uid="uid://v8unxy2cp7rw" path="res://scenes/ui.tscn" id="3_lnlxl"]
+[ext_resource type="Texture2D" uid="uid://blpg7piodxa8q" path="res://assets/entities/char.png" id="3_22bxr"]
+[ext_resource type="Texture2D" uid="uid://dqcq4ukwm5j3s" path="res://assets/entities/sun_light.png" id="3_wrlv0"]
+[ext_resource type="PackedScene" uid="uid://5l2k1s8nxwdu" path="res://scenes/ui/inventory.tscn" id="4_cau50"]
+[ext_resource type="PackedScene" uid="uid://dyqg1k0jn7ixh" path="res://scenes/ui/popup.tscn" id="5_kccdc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_n0gq2"]
-radius = 188.098
+radius = 150.03
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8rr46"]
+atlas = ExtResource("3_22bxr")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5b4ql"]
+atlas = ExtResource("3_22bxr")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8pdi4"]
+atlas = ExtResource("3_22bxr")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xjuse"]
+atlas = ExtResource("3_22bxr")
+region = Rect2(256, 0, 128, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6t6pq"]
 animations = [{
@@ -22,20 +40,31 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_ftyck")
+"texture": SubResource("AtlasTexture_8rr46")
 }],
 "loop": true,
 "name": &"idle",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5b4ql")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8pdi4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xjuse")
+}],
 "loop": true,
 "name": &"walking",
 "speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_35tqh"]
-size = Vector2(120, 140)
+size = Vector2(93, 84)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_j0lvb"]
 
 [node name="Character" type="CharacterBody2D"]
 script = ExtResource("1_n3o7h")
@@ -46,23 +75,52 @@ script = ExtResource("1_n3o7h")
 shape = SubResource("CircleShape2D_n0gq2")
 
 [node name="Flashlight" type="PointLight2D" parent="."]
+color = Color(1, 1, 1, 0.356863)
 energy = 2.29
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 1)
 texture = ExtResource("2_0qg0l")
-offset = Vector2(0, -250)
+offset = Vector2(0, -300)
+texture_scale = 1.5
+metadata/_edit_group_ = true
+
+[node name="Awareness" type="PointLight2D" parent="."]
+color = Color(1, 1, 1, 0.356863)
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 1)
+texture = ExtResource("3_wrlv0")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_6t6pq")
-animation = &"death_2"
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, 0)
 shape = SubResource("RectangleShape2D_35tqh")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Ui" parent="." instance=ExtResource("3_lnlxl")]
-position = Vector2(-960, -540)
+[node name="Label" type="Label" parent="."]
+light_mask = 2
+visibility_layer = 2
+material = SubResource("CanvasItemMaterial_j0lvb")
+offset_left = -960.0
+offset_top = 300.0
+offset_right = 960.0
+offset_bottom = 400.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 25
+theme_override_font_sizes/font_size = 90
+horizontal_alignment = 1
+vertical_alignment = 1
 
+[node name="Inventory" parent="." instance=ExtResource("4_cau50")]
+position = Vector2(-853, -411)
+
+[node name="Popup" parent="." instance=ExtResource("5_kccdc")]
+position = Vector2(3, -19)
+
+[connection signal="area_entered" from="Detection" to="." method="_on_detection_area_entered"]
 [connection signal="body_entered" from="Detection" to="." method="_on_detection_body_entered"]
+[connection signal="body_exited" from="Detection" to="." method="_on_detection_body_exited"]

@@ -1,0 +1,53 @@
+[gd_scene load_steps=4 format=3 uid="uid://5l2k1s8nxwdu"]
+
+[ext_resource type="Script" path="res://scenes/ui/inventory.gd" id="1_jw02h"]
+[ext_resource type="SpriteFrames" uid="uid://856h21lflhm4" path="res://assets/atlas/inventory.tres" id="2_s0btf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lyorx"]
+size = Vector2(177, 223)
+
+[node name="Inventory" type="Node2D"]
+script = ExtResource("1_jw02h")
+
+[node name="Note" type="Area2D" parent="."]
+z_index = 7
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Note"]
+position = Vector2(0.5, 0)
+sprite_frames = ExtResource("2_s0btf")
+frame = 3
+
+[node name="NoteShape" type="CollisionShape2D" parent="Note"]
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_lyorx")
+
+[node name="Grimoire" type="Area2D" parent="."]
+position = Vector2(200, 0)
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Grimoire"]
+position = Vector2(0.5, 0)
+sprite_frames = ExtResource("2_s0btf")
+frame = 1
+
+[node name="GrimoireShape" type="CollisionShape2D" parent="Grimoire"]
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_lyorx")
+
+[node name="Bible" type="Area2D" parent="."]
+position = Vector2(400, 0)
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Bible"]
+position = Vector2(0.5, 0)
+sprite_frames = ExtResource("2_s0btf")
+frame = 2
+
+[node name="BibleShape" type="CollisionShape2D" parent="Bible"]
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_lyorx")
+
+[connection signal="input_event" from="Note" to="." method="_on_note_input_event"]
+[connection signal="input_event" from="Grimoire" to="." method="_on_grimoire_input_event"]
+[connection signal="input_event" from="Bible" to="." method="_on_bible_input_event"]
