@@ -19,4 +19,5 @@ func _process(delta: float) -> void:
 
 func _on_bible_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event.is_action_pressed("lbm"):
+		print("SUS")
 		opened_bible.visible = true
