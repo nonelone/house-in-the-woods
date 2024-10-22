@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://b1akwljo5tt3e"]
+
+[ext_resource type="Script" path="res://scenes/items/knife.gd" id="1_4onvu"]
+[ext_resource type="SpriteFrames" uid="uid://856h21lflhm4" path="res://assets/atlas/inventory.tres" id="1_lj7o5"]
+[ext_resource type="AudioStream" uid="uid://cxkeohvgxblos" path="res://assets/sounds/slash.wav" id="3_hv4ud"]
+[ext_resource type="AudioStream" uid="uid://dmenl3mo8xqcx" path="res://assets/sounds/slash2.wav" id="4_hc503"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c3i20"]
+size = Vector2(69, 27)
+
+[node name="Knife" type="Area2D"]
+script = ExtResource("1_4onvu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(21.5, -2.5)
+shape = SubResource("RectangleShape2D_c3i20")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+rotation = 1.5708
+sprite_frames = ExtResource("1_lj7o5")
+frame = 5
+
+[node name="ShankPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_hv4ud")
+volume_db = 24.0
+autoplay = true
+max_polyphony = 2
+
+[node name="HitPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_hc503")
+volume_db = 20.0
+max_polyphony = 2
+
+[connection signal="body_entered" from="." to="." method="_on_knife_entered"]

@@ -74,8 +74,8 @@ polygon = PackedVector2Array(55.7515, 54.1766, -55.7515, 54.8066, -55.1216, -64,
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_jowo7"]
 polygon = PackedVector2Array(-54.8008, -64, -56.215, 64, 56.215, 64, 56.215, -64)
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_flqql"]
-polygon = PackedVector2Array(55.1215, 64, -64, 64, -64, -54.8066, 54.4916, -55.4365)
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_kyd7b"]
+polygon = PackedVector2Array(64, 64, 61.3606, 64, 62.0288, -61.9175, -64, -61.6947, -64, -64, 64, -64)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_uopct"]
 polygon = PackedVector2Array(-56.1452, -55.8302, -55.9877, -64, 64, -64, 64, 64, -64, 64, -64, -55.8302)
@@ -103,7 +103,7 @@ texture_region_size = Vector2i(128, 128)
 5:0/0 = 0
 5:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_uopct")
 4:0/0 = 0
-4:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_flqql")
+4:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_kyd7b")
 9:0/0 = 0
 9:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, -64, 64, 64, 64, 64, -64)
 8:0/0 = 0
@@ -118,6 +118,34 @@ texture_region_size = Vector2i(128, 128)
 14:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, -64, 64, 64, 64, 64, -64)
 13:0/0 = 0
 13:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, -64, 64, 64, 64, 64, -64)
+15:0/0 = 0
+15:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, -64, 64, 64, 64, 64, -64)
+16:0/0 = 0
+16:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, -64, 64, 64, 64, 64, -64)
+17:0/0 = 0
+17:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, -64, 64, 64, 64, 64, -64)
+18:0/0 = 0
+18:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, -64, 64, 64, 64, 64, -64)
+19:0/0 = 0
+19:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, -64, 64, 64, 64, 64, -64)
+20:0/0 = 0
+20:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, -64, 64, 64, 64, 64, -64)
+21:0/0 = 0
+21:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, -64, 64, 64, 64, 64, -64)
+22:0/0 = 0
+22:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, -64, 64, 64, 64, 64, -64)
+23:0/0 = 0
+23:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, -64, 64, 64, 64, 64, -64)
+24:0/0 = 0
+24:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, -64, 64, 64, 64, 64, -64)
+25:0/0 = 0
+25:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, -64, 64, 64, 64, 64, -64)
+26:0/0 = 0
+26:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, -64, 64, 64, 64, 64, -64)
+27:0/0 = 0
+27:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, -64, 64, 64, 64, 64, -64)
+28:0/0 = 0
+28:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, -64, 64, 64, 64, 64, -64)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bmsgi"]
 texture = ExtResource("5_73i84")
@@ -137,6 +165,16 @@ texture_region_size = Vector2i(128, 128)
 12:0/0 = 0
 13:0/0 = 0
 14:0/0 = 0
+15:0/0 = 0
+16:0/0 = 0
+17:0/0 = 0
+18:0/0 = 0
+19:0/0 = 0
+20:0/0 = 0
+21:0/0 = 0
+22:0/0 = 0
+23:0/0 = 0
+24:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bauuf"]
 texture = ExtResource("6_pseeq")

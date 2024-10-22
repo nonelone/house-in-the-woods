@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://daeimnu5l4mhl"]
+
+[ext_resource type="Script" path="res://insanity_zone.gd" id="1_koekh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p2vyn"]
+
+[node name="InsanityZone" type="Area2D"]
+script = ExtResource("1_koekh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_p2vyn")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

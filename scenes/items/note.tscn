@@ -1,65 +1,23 @@
-[gd_scene load_steps=11 format=3 uid="uid://cksul0stcjiso"]
+[gd_scene load_steps=5 format=3 uid="uid://cksul0stcjiso"]
 
 [ext_resource type="Material" uid="uid://c63j4vj58rwkx" path="res://scenes/items/outline.material" id="1_7atmp"]
-[ext_resource type="Texture2D" uid="uid://dus6yid2dmo4e" path="res://assets/atlas/items.png" id="2_u1yto"]
+[ext_resource type="SpriteFrames" uid="uid://856h21lflhm4" path="res://assets/atlas/inventory.tres" id="2_24aax"]
 [ext_resource type="Script" path="res://scenes/items/note.gd" id="3_hg25h"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8ldav"]
-atlas = ExtResource("2_u1yto")
-region = Rect2(256, 0, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7twa8"]
-atlas = ExtResource("2_u1yto")
-region = Rect2(0, 0, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_npaqp"]
-atlas = ExtResource("2_u1yto")
-region = Rect2(512, 0, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ae62r"]
-atlas = ExtResource("2_u1yto")
-region = Rect2(768, 0, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vq4sp"]
-atlas = ExtResource("2_u1yto")
-region = Rect2(1024, 0, 256, 256)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_taqe8"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8ldav")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7twa8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_npaqp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ae62r")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vq4sp")
-}],
-"loop": true,
-"name": &"items",
-"speed": 5.0
-}]
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a7g2c"]
-size = Vector2(184, 224)
+size = Vector2(171, 224)
 
 [node name="Note" type="AnimatedSprite2D"]
 texture_filter = 1
 material = ExtResource("1_7atmp")
-sprite_frames = SubResource("SpriteFrames_taqe8")
-animation = &"items"
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("2_24aax")
 frame = 3
 script = ExtResource("3_hg25h")
 
 [node name="NoteBody" type="StaticBody2D" parent="."]
+scale = Vector2(0.5, 0.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NoteBody"]
-position = Vector2(5, 0)
+position = Vector2(-1.5, 0)
 shape = SubResource("RectangleShape2D_a7g2c")
