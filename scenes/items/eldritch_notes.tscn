@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://1xaxqm5l1q12"]
+
+[ext_resource type="Material" uid="uid://c63j4vj58rwkx" path="res://scenes/items/outline.material" id="1_4uj3s"]
+[ext_resource type="SpriteFrames" uid="uid://856h21lflhm4" path="res://assets/atlas/inventory.tres" id="2_21ov7"]
+[ext_resource type="Script" path="res://scenes/items/eldritch_notes.gd" id="3_fhtg4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a7g2c"]
+size = Vector2(234, 224)
+
+[node name="EldritchNotes" type="AnimatedSprite2D"]
+texture_filter = 1
+material = ExtResource("1_4uj3s")
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("2_21ov7")
+frame = 12
+script = ExtResource("3_fhtg4")
+
+[node name="EldritchNotesBody" type="StaticBody2D" parent="."]
+scale = Vector2(0.5, 0.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EldritchNotesBody"]
+shape = SubResource("RectangleShape2D_a7g2c")

@@ -1,50 +1,187 @@
-[gd_scene load_steps=5 format=3 uid="uid://c65l026xbugam"]
+[gd_scene load_steps=8 format=3 uid="uid://c65l026xbugam"]
 
-[ext_resource type="Texture2D" uid="uid://qf2s8xcfv0a3" path="res://assets/entities/menu-tile.png" id="1_nfkc1"]
 [ext_resource type="Script" path="res://scenes/main_menu.gd" id="1_u48ak"]
+[ext_resource type="Texture2D" uid="uid://lpnv882lmwca" path="res://assets/title_card.png" id="2_j1ggf"]
 [ext_resource type="Texture2D" uid="uid://bx021tib1ypm4" path="res://assets/tres/menu_patch_rect.tres" id="3_v3j2f"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jx3ax"]
+size = Vector2(672, 228)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j1d8p"]
+size = Vector2(890, 232)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ovvkx"]
+size = Vector2(554, 230)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nj1kf"]
-size = Vector2(641, 320)
+size = Vector2(664, 234)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_u48ak")
 
-[node name="PlayButton" type="Area2D" parent="."]
-position = Vector2(960, 360)
-scale = Vector2(0.5, 0.5)
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(960, 538)
+scale = Vector2(1.2, 1.20444)
+texture = ExtResource("2_j1ggf")
 
-[node name="Sprite2D" type="Sprite2D" parent="PlayButton"]
-texture = ExtResource("1_nfkc1")
+[node name="PlayButton" type="Area2D" parent="."]
+position = Vector2(275, 950)
+scale = Vector2(0.5, 0.5)
+metadata/_edit_group_ = true
+
+[node name="PlayPatch" type="NinePatchRect" parent="PlayButton"]
+self_modulate = Color(0.419813, 0.419813, 0.419813, 1)
+texture_filter = 1
+offset_left = -326.0
+offset_top = -164.0
+offset_right = 346.0
+offset_bottom = 68.0
+mouse_filter = 1
+texture = ExtResource("3_v3j2f")
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+
+[node name="Label" type="Label" parent="PlayButton/PlayPatch"]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 21.0
+offset_right = 648.0
+offset_bottom = 216.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 70
+theme_override_font_sizes/font_size = 200
+text = "Play"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayButton"]
-position = Vector2(-1.5, 0)
-shape = SubResource("RectangleShape2D_nj1kf")
+position = Vector2(12, -48)
+shape = SubResource("RectangleShape2D_jx3ax")
+
+[node name="AchivementsButton" type="Area2D" parent="."]
+position = Vector2(711, 950)
+scale = Vector2(0.5, 0.5)
+metadata/_edit_group_ = true
+
+[node name="AchivementsPatch" type="NinePatchRect" parent="AchivementsButton"]
+self_modulate = Color(0.419813, 0.419813, 0.419813, 1)
+texture_filter = 1
+offset_left = -326.0
+offset_top = -164.0
+offset_right = 564.0
+offset_bottom = 68.0
+mouse_filter = 1
+texture = ExtResource("3_v3j2f")
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+
+[node name="Label" type="Label" parent="AchivementsButton/AchivementsPatch"]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 21.0
+offset_right = 868.0
+offset_bottom = 216.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 70
+theme_override_font_sizes/font_size = 200
+text = "Achivements"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AchivementsButton"]
+position = Vector2(121, -48)
+shape = SubResource("RectangleShape2D_j1d8p")
+
+[node name="AboutButton" type="Area2D" parent="."]
+position = Vector2(1257, 950)
+scale = Vector2(0.5, 0.5)
+metadata/_edit_group_ = true
+
+[node name="AboutPatch" type="NinePatchRect" parent="AboutButton"]
+self_modulate = Color(0.419813, 0.419813, 0.419813, 1)
+texture_filter = 1
+offset_left = -326.0
+offset_top = -164.0
+offset_right = 226.0
+offset_bottom = 68.0
+mouse_filter = 1
+texture = ExtResource("3_v3j2f")
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+
+[node name="Label" type="Label" parent="AboutButton/AboutPatch"]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 21.0
+offset_right = 530.0
+offset_bottom = 216.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 70
+theme_override_font_sizes/font_size = 200
+text = "About
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AboutButton"]
+position = Vector2(-51, -49)
+shape = SubResource("RectangleShape2D_ovvkx")
 
 [node name="CreditsButton" type="Area2D" parent="."]
-position = Vector2(960, 560)
+position = Vector2(1639, 950)
 scale = Vector2(0.5, 0.5)
+metadata/_edit_group_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="CreditsButton"]
-texture = ExtResource("1_nfkc1")
+[node name="CreditsPatch" type="NinePatchRect" parent="CreditsButton"]
+self_modulate = Color(0.419813, 0.419813, 0.419813, 1)
+texture_filter = 1
+offset_left = -326.0
+offset_top = -164.0
+offset_right = 322.0
+offset_bottom = 68.0
+mouse_filter = 1
+texture = ExtResource("3_v3j2f")
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+
+[node name="Label" type="Label" parent="CreditsButton/CreditsPatch"]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 21.0
+offset_right = 628.0
+offset_bottom = 216.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 70
+theme_override_font_sizes/font_size = 200
+text = "Credits"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CreditsButton"]
-position = Vector2(-1.5, 0)
+position = Vector2(0, -47)
 shape = SubResource("RectangleShape2D_nj1kf")
 
-[node name="SettingsButton" type="Area2D" parent="."]
-visible = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SettingsButton"]
-shape = SubResource("RectangleShape2D_nj1kf")
-
-[node name="Sprite2D" type="Sprite2D" parent="SettingsButton"]
-
-[node name="Credits" type="Node2D" parent="."]
+[node name="About" type="Node2D" parent="."]
 visible = false
 position = Vector2(960, 540)
 
-[node name="CreditsPatch" type="NinePatchRect" parent="Credits"]
+[node name="AboutPatch" type="NinePatchRect" parent="About"]
 texture_filter = 1
 offset_left = -480.0
 offset_top = -405.0
@@ -57,5 +194,139 @@ patch_margin_top = 32
 patch_margin_right = 32
 patch_margin_bottom = 32
 
+[node name="Label" type="Label" parent="About/AboutPatch"]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 21.0
+offset_right = 941.0
+offset_bottom = 788.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 70
+text = "Follow Wren as they seek shelter in an abandoned house in the woods.
+
+Witnessing strange phenomenomes can decrease your mental health - you can try to meditate [SPACE] or find peace in religious practice.
+
+This game was made as a part of SCREAM JAM 2024"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Achivements" type="Node2D" parent="."]
+visible = false
+position = Vector2(960, 540)
+
+[node name="AboutPatch" type="NinePatchRect" parent="Achivements"]
+texture_filter = 1
+offset_left = -480.0
+offset_top = -405.0
+offset_right = 480.0
+offset_bottom = 405.0
+mouse_filter = 0
+texture = ExtResource("3_v3j2f")
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+
+[node name="Label" type="Label" parent="Achivements/AboutPatch"]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 21.0
+offset_right = 941.0
+offset_bottom = 201.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 70
+text = "This game has multiple endings, and finishing it in certain ways will earn achivements"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Credits" type="Node2D" parent="."]
+visible = false
+position = Vector2(960, 640)
+metadata/_edit_group_ = true
+
+[node name="AboutPatch" type="NinePatchRect" parent="Credits"]
+texture_filter = 1
+offset_left = -480.0
+offset_top = -405.0
+offset_right = 480.0
+offset_bottom = 86.0
+mouse_filter = 0
+texture = ExtResource("3_v3j2f")
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+
+[node name="Label" type="Label" parent="Credits/AboutPatch"]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 21.0
+offset_right = 941.0
+offset_bottom = 470.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 70
+text = "Code: Sha
+Audio QM
+Graphics: Sha & HennanTheFox
+
+
+
+Font: kenney.nl
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="AchivementGained" type="Node2D" parent="."]
+visible = false
+position = Vector2(960, 780)
+metadata/_edit_group_ = true
+
+[node name="GainedPatch" type="NinePatchRect" parent="AchivementGained"]
+visible = false
+self_modulate = Color(0.577008, 0.577008, 0.577008, 1)
+texture_filter = 1
+offset_left = -480.0
+offset_top = -405.0
+offset_right = 480.0
+offset_bottom = -137.0
+mouse_filter = 0
+texture = ExtResource("3_v3j2f")
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+
+[node name="GainedPatch2" type="NinePatchRect" parent="AchivementGained/GainedPatch"]
+texture_filter = 1
+offset_right = 292.0
+offset_bottom = 268.0
+mouse_filter = 0
+texture = ExtResource("3_v3j2f")
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+
+[node name="Label" type="Label" parent="AchivementGained/GainedPatch"]
+layout_mode = 0
+offset_left = 328.0
+offset_top = 21.0
+offset_right = 941.0
+offset_bottom = 249.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 40
+theme_override_font_sizes/font_size = 80
+vertical_alignment = 1
+autowrap_mode = 3
+
 [connection signal="input_event" from="PlayButton" to="." method="_on_play_button_input_event"]
+[connection signal="input_event" from="AchivementsButton" to="." method="_on_achivements_button_input_event"]
+[connection signal="input_event" from="AboutButton" to="." method="_on_about_button_input_event"]
 [connection signal="input_event" from="CreditsButton" to="." method="_on_credits_button_input_event"]

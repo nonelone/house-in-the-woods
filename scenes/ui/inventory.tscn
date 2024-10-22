@@ -15,6 +15,7 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Note"]
 position = Vector2(0.5, 0)
+scale = Vector2(2, 2)
 sprite_frames = ExtResource("2_s0btf")
 frame = 3
 
@@ -28,6 +29,7 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Grimoire"]
 position = Vector2(0.5, 0)
+scale = Vector2(2, 2)
 sprite_frames = ExtResource("2_s0btf")
 frame = 1
 
@@ -41,6 +43,7 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Bible"]
 position = Vector2(0.5, 0)
+scale = Vector2(2, 2)
 sprite_frames = ExtResource("2_s0btf")
 frame = 2
 
