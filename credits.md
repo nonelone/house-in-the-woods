@@ -1,9 +1,17 @@
 # Code
-nonelone
+Sha
 
 # Assets
-### In-house
-nonelone
+Graphics:
+ - Sha
+ - HennanTheFox
 
-### External
-kenney.nl
+Audio:
+ - hgmlle
+
+Font:
+ - Kenney @ kenney.nl
+
+Game Design:
+ - Sha
+ - V0lk4n00
