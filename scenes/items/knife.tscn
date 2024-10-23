@@ -28,7 +28,7 @@ max_polyphony = 2
 
 [node name="HitPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_hc503")
-volume_db = 20.0
+volume_db = 10.0
 max_polyphony = 2
 
 [connection signal="body_entered" from="." to="." method="_on_knife_entered"]

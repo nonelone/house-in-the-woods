@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://c65l026xbugam"]
+[gd_scene load_steps=10 format=3 uid="uid://c65l026xbugam"]
 
 [ext_resource type="Script" path="res://scenes/main_menu.gd" id="1_u48ak"]
 [ext_resource type="Texture2D" uid="uid://lpnv882lmwca" path="res://assets/title_card.png" id="2_j1ggf"]
 [ext_resource type="Texture2D" uid="uid://bx021tib1ypm4" path="res://assets/tres/menu_patch_rect.tres" id="3_v3j2f"]
+[ext_resource type="SpriteFrames" uid="uid://bdb8urlmb80ks" path="res://assets/atlas/achivements.tres" id="4_7vloe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jx3ax"]
 size = Vector2(672, 228)
@@ -15,6 +16,9 @@ size = Vector2(554, 230)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nj1kf"]
 size = Vector2(664, 234)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hqxmy"]
+size = Vector2(200, 228)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_u48ak")
@@ -177,6 +181,44 @@ autowrap_mode = 3
 position = Vector2(0, -47)
 shape = SubResource("RectangleShape2D_nj1kf")
 
+[node name="ExitButton" type="Area2D" parent="."]
+position = Vector2(1959, 97)
+scale = Vector2(0.5, 0.5)
+metadata/_edit_group_ = true
+
+[node name="CreditsPatch" type="NinePatchRect" parent="ExitButton"]
+self_modulate = Color(0.419813, 0.419813, 0.419813, 1)
+texture_filter = 1
+offset_left = -326.0
+offset_top = -164.0
+offset_right = -122.0
+offset_bottom = 68.0
+mouse_filter = 1
+texture = ExtResource("3_v3j2f")
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+
+[node name="Label" type="Label" parent="ExitButton/CreditsPatch"]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 21.0
+offset_right = 202.0
+offset_bottom = 210.0
+theme_override_colors/font_color = Color(1, 0.151344, 0.108333, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 70
+theme_override_font_sizes/font_size = 250
+text = "X"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitButton"]
+position = Vector2(-224, -52)
+shape = SubResource("RectangleShape2D_hqxmy")
+
 [node name="About" type="Node2D" parent="."]
 visible = false
 position = Vector2(960, 540)
@@ -205,9 +247,11 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 70
 text = "Follow Wren as they seek shelter in an abandoned house in the woods.
 
-Witnessing strange phenomenomes can decrease your mental health - you can try to meditate [SPACE] or find peace in religious practice.
+Move around the house with [W, S, A, D], meditate with [SPACE], open inventory with [TAB], interact with the environment using [E] and avoid sharp objects.
 
-This game was made as a part of SCREAM JAM 2024"
+This game was made as a part of SCREAM JAM 2024.
+
+This is the second game I ever made, so expect bugs."
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
@@ -246,7 +290,6 @@ autowrap_mode = 3
 [node name="Credits" type="Node2D" parent="."]
 visible = false
 position = Vector2(960, 640)
-metadata/_edit_group_ = true
 
 [node name="AboutPatch" type="NinePatchRect" parent="Credits"]
 texture_filter = 1
@@ -271,12 +314,10 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 70
 text = "Code: Sha
-Audio QM
+Audio: hgmlle
 Graphics: Sha & HennanTheFox
-
-
-
-Font: kenney.nl
+Design: Sha & V0lk4n00
+Font: Kenney @ kenney.nl
 "
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -285,10 +326,8 @@ autowrap_mode = 3
 [node name="AchivementGained" type="Node2D" parent="."]
 visible = false
 position = Vector2(960, 780)
-metadata/_edit_group_ = true
 
 [node name="GainedPatch" type="NinePatchRect" parent="AchivementGained"]
-visible = false
 self_modulate = Color(0.577008, 0.577008, 0.577008, 1)
 texture_filter = 1
 offset_left = -480.0
@@ -304,6 +343,7 @@ patch_margin_bottom = 32
 
 [node name="GainedPatch2" type="NinePatchRect" parent="AchivementGained/GainedPatch"]
 texture_filter = 1
+layout_mode = 0
 offset_right = 292.0
 offset_bottom = 268.0
 mouse_filter = 0
@@ -313,6 +353,11 @@ patch_margin_top = 32
 patch_margin_right = 32
 patch_margin_bottom = 32
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="AchivementGained/GainedPatch"]
+position = Vector2(146, 134)
+scale = Vector2(0.7875, 0.7125)
+sprite_frames = ExtResource("4_7vloe")
+
 [node name="Label" type="Label" parent="AchivementGained/GainedPatch"]
 layout_mode = 0
 offset_left = 328.0
@@ -321,7 +366,7 @@ offset_right = 941.0
 offset_bottom = 249.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 40
+theme_override_constants/outline_size = 32
 theme_override_font_sizes/font_size = 80
 vertical_alignment = 1
 autowrap_mode = 3
@@ -330,3 +375,4 @@ autowrap_mode = 3
 [connection signal="input_event" from="AchivementsButton" to="." method="_on_achivements_button_input_event"]
 [connection signal="input_event" from="AboutButton" to="." method="_on_about_button_input_event"]
 [connection signal="input_event" from="CreditsButton" to="." method="_on_credits_button_input_event"]
+[connection signal="input_event" from="ExitButton" to="." method="_on_exit_button_input_event"]

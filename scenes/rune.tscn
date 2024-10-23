@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8ed7mqsaf03a"]
+
+[ext_resource type="Script" path="res://scenes/rune.gd" id="1_ajkri"]
+[ext_resource type="SpriteFrames" uid="uid://cy3ebwi0wd4ff" path="res://scenes/ui/runes.tres" id="1_innyn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x4tts"]
+size = Vector2(102, 102)
+
+[node name="Rune" type="AnimatedSprite2D"]
+sprite_frames = ExtResource("1_innyn")
+script = ExtResource("1_ajkri")
+
+[node name="RuneBody" type="Area2D" parent="."]
+disable_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RuneBody"]
+scale = Vector2(1.7, 1.7)
+shape = SubResource("RectangleShape2D_x4tts")
+
+[connection signal="body_entered" from="RuneBody" to="." method="_on_rune_body_body_entered"]
+[connection signal="body_exited" from="RuneBody" to="." method="_on_rune_body_body_exited"]

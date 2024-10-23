@@ -1,7 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://dyqg1k0jn7ixh"]
+[gd_scene load_steps=6 format=3 uid="uid://dyqg1k0jn7ixh"]
 
 [ext_resource type="Script" path="res://scenes/ui/popup.gd" id="1_cd0xa"]
 [ext_resource type="SpriteFrames" uid="uid://856h21lflhm4" path="res://assets/atlas/inventory.tres" id="1_iwshk"]
+[ext_resource type="SpriteFrames" uid="uid://cy3ebwi0wd4ff" path="res://scenes/ui/runes.tres" id="3_aeqgv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_31xic"]
+size = Vector2(32.5, 24.8333)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_85gs6"]
+size = Vector2(33.8333, 23.5)
 
 [node name="Popup" type="Node2D"]
 script = ExtResource("1_cd0xa")
@@ -21,6 +28,26 @@ position = Vector2(64, 0)
 sprite_frames = ExtResource("1_iwshk")
 frame = 9
 
+[node name="TL" type="AnimatedSprite2D" parent="Grimoire/PageRight"]
+position = Vector2(-41, -19.1667)
+scale = Vector2(0.3, 0.3)
+sprite_frames = ExtResource("3_aeqgv")
+
+[node name="TR" type="AnimatedSprite2D" parent="Grimoire/PageRight"]
+position = Vector2(-3.5, -19.3333)
+scale = Vector2(0.3, 0.3)
+sprite_frames = ExtResource("3_aeqgv")
+
+[node name="BL" type="AnimatedSprite2D" parent="Grimoire/PageRight"]
+position = Vector2(-40.8333, 24.3333)
+scale = Vector2(0.3, 0.3)
+sprite_frames = ExtResource("3_aeqgv")
+
+[node name="BR" type="AnimatedSprite2D" parent="Grimoire/PageRight"]
+position = Vector2(-3.33333, 24.6667)
+scale = Vector2(0.3, 0.3)
+sprite_frames = ExtResource("3_aeqgv")
+
 [node name="GrimoireLabel" type="Label" parent="Grimoire"]
 anchors_preset = 8
 anchor_left = 0.5
@@ -37,14 +64,44 @@ scale = Vector2(0.5, 0.5)
 theme_override_colors/font_color = Color(0.776745, 0.356619, 0.356619, 1)
 theme_override_constants/outline_size = 0
 theme_override_font_sizes/font_size = 45
-text = "NAME
-RUNE #1
-RUNE #2
-REQUIRED
-REQUIRED "
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
+
+[node name="NPLabel" type="Label" parent="Grimoire"]
+offset_left = 95.8333
+offset_top = -14.5
+offset_right = 135.833
+offset_bottom = 15.5
+theme_override_colors/font_color = Color(0.798737, 0.686336, 0.12632, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 40
+text = "->"
+
+[node name="NextPage" type="Area2D" parent="Grimoire/NPLabel"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Grimoire/NPLabel/NextPage"]
+position = Vector2(13.5833, 15.75)
+shape = SubResource("RectangleShape2D_31xic")
+
+[node name="PPLabel" type="Label" parent="Grimoire"]
+offset_left = -122.333
+offset_top = -14.3333
+offset_right = -82.3333
+offset_bottom = 15.6667
+theme_override_colors/font_color = Color(0.798737, 0.686336, 0.12632, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 40
+text = "<-"
+
+[node name="PreviousPage" type="Area2D" parent="Grimoire/PPLabel"]
+position = Vector2(218.167, -0.166666)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Grimoire/PPLabel/PreviousPage"]
+position = Vector2(-207.417, 15.9167)
+shape = SubResource("RectangleShape2D_85gs6")
 
 [node name="Note" type="AnimatedSprite2D" parent="."]
 visible = false
@@ -69,7 +126,7 @@ scale = Vector2(0.5, 0.5)
 theme_override_colors/font_color = Color(0.776745, 0.356619, 0.356619, 1)
 theme_override_font_sizes/font_size = 16
 text = "
-Dear Wren,
+Hi Wren,
 
 You will find all answers in the Book
 
@@ -77,3 +134,75 @@ Find the key and all will become clear"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
+
+[node name="NotePad" type="AnimatedSprite2D" parent="."]
+visible = false
+z_index = 2
+scale = Vector2(8, 8)
+sprite_frames = ExtResource("1_iwshk")
+frame = 16
+
+[node name="Title" type="Label" parent="NotePad"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -129.0
+offset_top = -107.875
+offset_right = 3.0
+offset_bottom = -88.875
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Wren's Notes"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Label" type="Label" parent="NotePad"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -97.0
+offset_top = -91.0
+offset_right = 165.0
+offset_bottom = 226.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+autowrap_mode = 2
+
+[node name="Bible" type="AnimatedSprite2D" parent="."]
+visible = false
+z_index = 2
+position = Vector2(0, -50)
+scale = Vector2(6, 6)
+sprite_frames = ExtResource("1_iwshk")
+frame = 7
+
+[node name="Label" type="Label" parent="Bible"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -88.0
+offset_top = -108.0
+offset_right = 25.0
+offset_bottom = 51.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(1, 0.792157, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+autowrap_mode = 2
+
+[connection signal="input_event" from="Grimoire/NPLabel/NextPage" to="." method="_on_next_page_input_event"]
+[connection signal="input_event" from="Grimoire/PPLabel/PreviousPage" to="." method="_on_previous_page_input_event"]

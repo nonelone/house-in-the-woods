@@ -19,6 +19,6 @@ func _on_knife_entered(body: Node2D) -> void:
 	elif body.name == "World":
 		position.x += -20
 		enabled = false
-		
+
 		await get_tree().create_timer(60.0).timeout # disappear after a minute
 		queue_free()

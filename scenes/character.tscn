@@ -1,30 +1,32 @@
-[gd_scene load_steps=15 format=3 uid="uid://bnwgpi0vasadf"]
+[gd_scene load_steps=17 format=3 uid="uid://bnwgpi0vasadf"]
 
 [ext_resource type="Script" path="res://scenes/character.gd" id="1_n3o7h"]
 [ext_resource type="Texture2D" uid="uid://caoor745sppkw" path="res://assets/entities/light.png" id="2_0qg0l"]
-[ext_resource type="Texture2D" uid="uid://blpg7piodxa8q" path="res://assets/entities/char.png" id="3_22bxr"]
+[ext_resource type="SpriteFrames" uid="uid://856h21lflhm4" path="res://assets/atlas/inventory.tres" id="3_6wnw6"]
 [ext_resource type="Texture2D" uid="uid://dqcq4ukwm5j3s" path="res://assets/entities/sun_light.png" id="3_wrlv0"]
+[ext_resource type="Texture2D" uid="uid://gqndu28ov622" path="res://assets/atlas/wren.png" id="4_bsglh"]
 [ext_resource type="PackedScene" uid="uid://5l2k1s8nxwdu" path="res://scenes/ui/inventory.tscn" id="4_cau50"]
 [ext_resource type="PackedScene" uid="uid://dyqg1k0jn7ixh" path="res://scenes/ui/popup.tscn" id="5_kccdc"]
+[ext_resource type="AudioStream" uid="uid://n2urachfi8el" path="res://assets/sounds/step1.wav" id="8_u74yy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_n0gq2"]
 radius = 150.03
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8rr46"]
-atlas = ExtResource("3_22bxr")
-region = Rect2(384, 0, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5b4ql"]
-atlas = ExtResource("3_22bxr")
+[sub_resource type="AtlasTexture" id="AtlasTexture_2d81c"]
+atlas = ExtResource("4_bsglh")
 region = Rect2(0, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8pdi4"]
-atlas = ExtResource("3_22bxr")
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ihak"]
+atlas = ExtResource("4_bsglh")
 region = Rect2(128, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xjuse"]
-atlas = ExtResource("3_22bxr")
+[sub_resource type="AtlasTexture" id="AtlasTexture_j56ft"]
+atlas = ExtResource("4_bsglh")
 region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3i0b0"]
+atlas = ExtResource("4_bsglh")
+region = Rect2(384, 0, 128, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6t6pq"]
 animations = [{
@@ -39,8 +41,11 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8rr46")
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_2d81c")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_2ihak")
 }],
 "loop": true,
 "name": &"idle",
@@ -48,21 +53,18 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5b4ql")
+"texture": SubResource("AtlasTexture_j56ft")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8pdi4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xjuse")
+"texture": SubResource("AtlasTexture_3i0b0")
 }],
 "loop": true,
 "name": &"walking",
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_35tqh"]
-size = Vector2(93, 84)
+[sub_resource type="CircleShape2D" id="CircleShape2D_0sne7"]
+radius = 54.5367
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_j0lvb"]
 
@@ -80,9 +82,16 @@ energy = 2.29
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 1)
 texture = ExtResource("2_0qg0l")
-offset = Vector2(0, -300)
+offset = Vector2(0, -350)
 texture_scale = 1.5
 metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Flashlight"]
+visible = false
+position = Vector2(0, -32)
+scale = Vector2(0.3, 0.3)
+sprite_frames = ExtResource("3_6wnw6")
+frame = 13
 
 [node name="Awareness" type="PointLight2D" parent="."]
 color = Color(1, 1, 1, 0.356863)
@@ -93,11 +102,11 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_6t6pq")
-animation = &"idle"
+animation = &"walking"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1.5, 0)
-shape = SubResource("RectangleShape2D_35tqh")
+shape = SubResource("CircleShape2D_0sne7")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -121,6 +130,10 @@ position = Vector2(-853, -411)
 
 [node name="Popup" parent="." instance=ExtResource("5_kccdc")]
 position = Vector2(3, -19)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_u74yy")
+autoplay = true
 
 [connection signal="area_entered" from="Detection" to="." method="_on_detection_area_entered"]
 [connection signal="body_entered" from="Detection" to="." method="_on_detection_body_entered"]

@@ -32,12 +32,21 @@ func _on_popup_closed(): self.visible = false
 
 func _on_note_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event.is_action_pressed("lbm"):
+		EventBus.emit_signal("pause_game")
 		EventBus.emit_signal("push_popup", "Note", "")
 
 func _on_grimoire_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event.is_action_pressed("lbm"):
+		EventBus.emit_signal("pause_game")
 		EventBus.emit_signal("push_popup", "Grimoire", "")
 
 func _on_bible_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event.is_action_pressed("lbm"):
+		EventBus.emit_signal("pause_game")
 		EventBus.emit_signal("push_popup", "Bible", "")
+
+
+func _on_note_pad_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	if event.is_action_pressed("lbm"):
+		EventBus.emit_signal("pause_game")
+		EventBus.emit_signal("push_popup", "NotePad", "")

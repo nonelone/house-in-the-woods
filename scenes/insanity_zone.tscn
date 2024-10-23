@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://daeimnu5l4mhl"]
 
-[ext_resource type="Script" path="res://insanity_zone.gd" id="1_koekh"]
+[ext_resource type="Script" path="res://scenes/insanity_zone.gd" id="1_koekh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p2vyn"]
 

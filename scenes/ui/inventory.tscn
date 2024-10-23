@@ -10,7 +10,9 @@ size = Vector2(177, 223)
 script = ExtResource("1_jw02h")
 
 [node name="Note" type="Area2D" parent="."]
+visible = false
 z_index = 7
+position = Vector2(200, 0)
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Note"]
@@ -23,8 +25,23 @@ frame = 3
 position = Vector2(0.5, -0.5)
 shape = SubResource("RectangleShape2D_lyorx")
 
+[node name="NotePad" type="Area2D" parent="."]
+z_index = 7
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NotePad"]
+position = Vector2(0.5, 0)
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("2_s0btf")
+frame = 16
+
+[node name="NotePadShape" type="CollisionShape2D" parent="NotePad"]
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_lyorx")
+
 [node name="Grimoire" type="Area2D" parent="."]
-position = Vector2(200, 0)
+visible = false
+position = Vector2(400, 0)
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Grimoire"]
@@ -38,7 +55,8 @@ position = Vector2(0.5, -0.5)
 shape = SubResource("RectangleShape2D_lyorx")
 
 [node name="Bible" type="Area2D" parent="."]
-position = Vector2(400, 0)
+visible = false
+position = Vector2(600, 0)
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Bible"]
@@ -52,5 +70,6 @@ position = Vector2(0.5, -0.5)
 shape = SubResource("RectangleShape2D_lyorx")
 
 [connection signal="input_event" from="Note" to="." method="_on_note_input_event"]
+[connection signal="input_event" from="NotePad" to="." method="_on_note_pad_input_event"]
 [connection signal="input_event" from="Grimoire" to="." method="_on_grimoire_input_event"]
 [connection signal="input_event" from="Bible" to="." method="_on_bible_input_event"]

@@ -11,7 +11,6 @@ var can_move = true
 var can_meditate = true
 
 var popped_up
-var current_ending
 
 @onready var sprite = get_node("AnimatedSprite2D")
 @onready var flashlight = get_node("Flashlight")
@@ -22,6 +21,8 @@ func _ready() -> void:
 	EventBus.push_awakening.connect(_on_awakening_pushed)
 	
 	EventBus.hit.connect(_on_hit)
+	EventBus.pause_game.connect(_on_pause)
+	EventBus.unpause_game.connect(_on_unpause)
 
 func _physics_process(delta):
 	if can_move:
@@ -31,19 +32,22 @@ func _physics_process(delta):
 		if direction == Vector2(0.0, 0.0):
 			sprite.animation = "idle"
 			sprite.play()
+			$AudioStreamPlayer2D.stop()
 			
 		else:
 			sprite.animation = "walking"
 			sprite.play()
+			if not $AudioStreamPlayer2D.playing:
+				$AudioStreamPlayer2D.play()
 			
 			# Change rotation only if the player is walking to avoid it snapping to 0
 			var flashlight_angle = rad_to_deg(direction.angle())
 			flashlight.rotation_degrees = flashlight_angle + 90
 		
 		if direction.x < 0:
-			sprite.flip_h = true
-		if direction.x > 0:
 			sprite.flip_h = false
+		if direction.x > 0:
+			sprite.flip_h = true
 		
 		move_and_slide()
 	
@@ -80,7 +84,7 @@ func _interact():
 	if interacting_with == "Bible": equipement.append("Bible")
 	elif interacting_with == "Note": equipement.append("Note")
 	elif interacting_with == "Key": equipement.append("Key")
-	elif interacting_with == "EldritchNotes": pass
+	elif interacting_with == "EldritchNotes": _research("notes")
 	elif interacting_with == "Grimoire":
 		equipement.append("Grimoire")
 		EventBus.emit_signal("next_omen") # <- this is where the fun begins
@@ -88,17 +92,20 @@ func _interact():
 		
 	elif interacting_with == "Car":
 		if "Note" in equipement and "Key" not in equipement:
-			EventBus.emit_signal("end_game", "Escaperinio")
-			current_ending = "Escaperinio"
+			EventBus.emit_signal("end_game", "Avoidance")
+			Globals.current_ending = "Avoidance"
 			get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 
-		
-	#EventBus.emit_signal("push_popup", "Inventory", equipement) # Update inventory
+func _research(source):
+	if source == "notes":
+		can_move = false
+		EventBus.emit_signal("push_awakening", "This knowledge may be yours...", 5)
+		await get_tree().create_timer(5).timeout
+		can_move = true
 
 func _on_detection_body_entered(body: Node2D) -> void:
 	if body.name != 'Character':
 		match body.name:
-			
 			# Items
 			"NoteBody":
 				EventBus.emit_signal("push_message", "Well, isn't that note ominous?", 1.5)
@@ -128,20 +135,33 @@ func _on_detection_body_entered(body: Node2D) -> void:
 				else:
 					EventBus.emit_signal("push_message", "What a strange book.\nWhy is it locked?", 1.5)
 				EventBus.emit_signal("in_range", "Grimoire")
-				
+
 			"EldritchNotesBody":
-				interacting_with = "EldritchNotes"
-				EventBus.emit_signal("push_message", "What a strange book.\nWhy is it locked?", 1.5)
-				EventBus.emit_signal("in_range", "EldritchNotesBody")
-				
+				if "Grimoire" in equipement:
+					interacting_with = "EldritchNotes" # Interact only if Wren has the grimoire
+					EventBus.emit_signal("push_message", "These symbols look familliar...", 2)
+				else:
+					EventBus.emit_signal("push_message", "These notes contain some strange symbols...", 3)
+				EventBus.emit_signal("in_range", "EldritchNotes")
+
 			"EldritchBooksBody":
-				interacting_with = "EldritchBooks"
-				EventBus.emit_signal("push_message", "What a strange book.\nWhy is it locked?", 1.5)
-				EventBus.emit_signal("in_range", "EldritchBooksBody")
+				if "Grimoire" in equipement:
+					interacting_with = "EldritchBooks" # Interact only if Wren has the grimoire
+					EventBus.emit_signal("push_message", "Maybe this will help", 1)
+				else:
+					EventBus.emit_signal("push_message", "These are relly dusty books...", 3)
+				EventBus.emit_signal("in_range", "EldritchBooks")
+				
+			"AltarBody":
+				interacting_with = "Altar"
+				#EventBus.emit_signal("start_ritual")
 
 			# Areas
+			"RuneBody":
+				EventBus.emit_signal("in_range", "Rune")
+				interacting_with = "Rune"
 			"CarBody":
-				if "Note" in equipement:
+				if equipement == ["Note"]:
 					EventBus.emit_signal("push_message", "I\'d better not get into it", .5)
 				else:
 					EventBus.emit_signal("push_message", "I just got here...", .5)
@@ -161,6 +181,9 @@ func _on_detection_area_entered(area: Area2D) -> void:
 	if area.name == "Doors":
 		if "Grimoire" in equipement:
 			EventBus.emit_signal("push_message", "They are locked!", .5)
+			
+	elif area.name == "RuneBody":
+		interacting_with = "Rune"
 
 func _on_message_pushed(message, duration):
 	if is_yapping:
@@ -187,7 +210,10 @@ func _on_awakening_pushed(message, duration):
 
 func _on_hit(thingy):
 	if thingy == "knife":
-		EventBus.emit_signal("end_game", "Deatherinio")
-		current_ending = "Deatherinio"
+		EventBus.emit_signal("end_game", "Death")
+		Globals.current_ending = "Death"
 		await get_tree().create_timer(.2).timeout
 		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+
+func _on_pause(): can_move = false
+func _on_unpause(): can_move = true
